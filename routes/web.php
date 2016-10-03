@@ -14,10 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/Projects/search','ProjectController@search')->name('Projects.search');
-Route::get('/Category/search','CategoryController@search')->name('Category.search');
-Route::Resource('/Projects', 'ProjectController');
-Route::Resource('/Category', 'CategoryController');
+Route::get('/projects/search', 'ProjectController@search')->name('projects.search');
+Route::get('/categories/search', 'CategoryController@search')->name('categories.search');
+Route::Resource('/projects', 'ProjectController');
+Route::Resource('/categories', 'CategoryController');
 
 
 

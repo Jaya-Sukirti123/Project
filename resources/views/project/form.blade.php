@@ -1,20 +1,8 @@
 @extends('layout.dashboard')
 @section('content')
-@include('layout.partials.messages');
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>FORM</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <div class="container">
-        <h2>FORM</h2>
-        <form action="{{ $project->id ? route('Projects.update', $project->id) : route('Projects.store') }}" method="post">
+    <h2>PROJECT FORM</h2>
+        @include('layout.partials.messages')
+        <form action="{{ $project->id ? route('projects.update', $project->id) : route('projects.store') }}" method="post">
             {{method_field($project->id ? 'PATCH' : 'POST')}}
             {{csrf_field()}}
             <div class="form-group">
@@ -48,17 +36,15 @@
                     <option value="9" {{$project->priority == 9 ? 'selected' : '' }}>9</option>
                     <option value="10" {{$project->priority == 10 ? 'selected' : '' }}>10</option>    
                 </select>
+            </div>
             <div class="form-group">
                 <label class="control-label col-xs-3">Category:</label>
                     <input type="text" name="category" class="form-control" placeholder="category" value="{{$project->category}}" > 
             </div>
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="{{route('Projects.index')}}" class="btn btn-default"><button type="button">Back to project</button></a>
+                <a href="{{route('projects.index')}}" class="btn btn-default"><button type="button">Back to project</button></a>
             </div>
         </form>
-        </div> 
-    </body>
-</html>
 @endsection
 

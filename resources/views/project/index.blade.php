@@ -1,20 +1,7 @@
- @include('layout.partials.messages')
-<!DOCTYPEhtml>
-<html>
-    <head>
-        <title>
-            Project List
-        </title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <div class="container">
-            <h2>SEARCH FORM</h2>
-        <form action="{{ route('Projects.search')}}" method="GET" >
+@extends('layout.dashboard')  
+@section('content')
+<h2>SEARCH FORM</h2>
+        <form action="{{ route('projects.search')}}" method="GET" >
             <div class="form-group">
                 <label class="control-label col-xs-3" for="search">Search Here:</label>
                 <input type="text" class="form-control" name="search" placeholder="search by title,description,reference...." value="{!! $request->get('search') !!}">
@@ -33,7 +20,7 @@
             </div>
         </form>
         <h2>PROJECT LIST</h2>
-       
+        @include('layout.partials.messages')
         @foreach ($projects as $project)  
             <ul>
                 <li>
@@ -43,7 +30,7 @@
                     <h4>Reference To:{{$project->reference_to}}</h4>
                     <h4>Priority:{{$project->priority}}</h4>
                     <h4>Category:{{$project->category}}</h4>
-                    <form action="{{ route('Projects.destroy', $project->id)}}" method="post">
+                    <form action="{{ route('projects.destroy', $project->id)}}" method="post">
                         {{method_field('DELETE')}}
                         {{csrf_field()}}
                         <input type='submit' class="btn btn-danger" value="DELETE">
@@ -51,8 +38,5 @@
                 </li>
             </ul>
         @endforeach
-        
         {!! $projects->links() !!}
-        </div>
-    </body>
-</html>
+    @endsection

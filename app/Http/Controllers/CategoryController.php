@@ -15,21 +15,21 @@ class CategoryController extends Controller
     {
         $categories=Category::paginate(5);
         //dd($category);
-        return view ('categoryIndex', compact('categories', 'request'));
+        return view ('category\category_index', compact('categories', 'request'));
     } 
     
      public function search(Request $request)
     {
         $categories=$this->dispatch(new SearchCategory());
         
-        return view('categoryIndex', compact('categories', 'request'));
+        return view('category\category_index', compact('categories', 'request'));
     }
     
     public function create()
     {
         $category= new Category();
         //dd($category);
-        return view('category', compact('category'));
+        return view('category\category_form', compact('category'));
     }
     
      public function store(CreateCategoryRequest $request)
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     public function edit($id, Request $request)
     { 
         $category = Category::find($id);
-        return view('category', compact('category'));
+        return view('category\category_form', compact('category'));
     }
     
     public function update($id, Request $request)

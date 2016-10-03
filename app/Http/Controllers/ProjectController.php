@@ -9,8 +9,6 @@ use function redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers;
  use App\Jobs\SearchProject;
-//use App\model;
-//use App\Http\Jobs\SearchProject;
 
 class ProjectController extends Controller
 {
@@ -18,20 +16,20 @@ class ProjectController extends Controller
     {
         $projects=Project::paginate(10);
         
-        return view ('index', compact('projects', 'request'));
+        return view ('project\index', compact('projects', 'request'));
     }
     
     public function search(Request $request)
     {
         $projects=$this->dispatch(new SearchProject());
         
-        return view('index', compact('projects', 'request'));
+        return view('project\index', compact('projects', 'request'));
     }
 
     public function create()
     {
         $project= new Project();
-        return view('form', compact('project'));
+        return view('project\form', compact('project'));
     }
     
     public function store(CreateProjectRequest $request)
@@ -44,7 +42,7 @@ class ProjectController extends Controller
     { 
        
         $project = Project::find($id);
-        return view('form', compact('project'));
+        return view('project\form', compact('project'));
     }
     
     public function update($id, Request $request)

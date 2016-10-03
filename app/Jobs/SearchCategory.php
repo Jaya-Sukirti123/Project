@@ -9,7 +9,11 @@ class SearchCategory
     
     public function handle(Category $category, Request $request)
     {
-        $categories = Category::where('category_name','LIKE','%$request->category_name%')->get();
-        return view ('categoryIndex', compact('categories'));   
+        $categories = $category->where(function($q) use ($request) {
+            return $q->orWhere('category_name', 'LIKE', '%'.$request->get('search').'%');
+                    
+        });
+
+        return $categories->paginate(5);   
     }
 }
