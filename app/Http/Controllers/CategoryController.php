@@ -14,21 +14,18 @@ class CategoryController extends Controller
      public function index(Request $request)
     {
         $categories=Category::paginate(5);
-        //dd($category);
         return view ('category\category_index', compact('categories', 'request'));
     } 
     
      public function search(Request $request)
     {
         $categories=$this->dispatch(new SearchCategory());
-        
         return view('category\category_index', compact('categories', 'request'));
     }
     
     public function create()
     {
         $category= new Category();
-        //dd($category);
         return view('category\category_form', compact('category'));
     }
     
@@ -51,6 +48,7 @@ class CategoryController extends Controller
             return redirect()->back()
                 ->withMessage('successfully updated');
        }
+       
        return redirect()->back()->withErrors('unable to update');
     }
     
@@ -60,6 +58,7 @@ class CategoryController extends Controller
             $category->delete();
             return redirect()->back()->withMessage('Successfully Deleted');
         }
+        
         return redirect()->back()->withErrors('unable to delete');
     }
     

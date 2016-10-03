@@ -15,14 +15,12 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         $projects=Project::paginate(10);
-        
         return view ('project\index', compact('projects', 'request'));
     }
     
     public function search(Request $request)
     {
         $projects=$this->dispatch(new SearchProject());
-        
         return view('project\index', compact('projects', 'request'));
     }
 
@@ -52,6 +50,7 @@ class ProjectController extends Controller
             return redirect()->back()
                 ->withMessage('successfully updated');
        }
+       
        return redirect()->back()->withErrors('unable to update');
     }
     
@@ -61,6 +60,7 @@ class ProjectController extends Controller
             $project->delete();
             return redirect()->back()->withMessage('Successfully Deleted');
         }
+        
         return redirect()->back()->withErrors('unable to delete');
     }
     
