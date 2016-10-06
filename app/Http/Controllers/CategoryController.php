@@ -11,13 +11,13 @@ use function view;
 
 class CategoryController extends Controller
 {
-     public function index(Request $request)
+    public function index(Request $request)
     {
         $categories=Category::paginate(5);
         return view ('category\category_index', compact('categories', 'request'));
     } 
     
-     public function search(Request $request)
+    public function search(Request $request)
     {
         $categories=$this->dispatch(new SearchCategory());
         return view('category\category_index', compact('categories', 'request'));
@@ -29,7 +29,7 @@ class CategoryController extends Controller
         return view('category\category_form', compact('category'));
     }
     
-     public function store(CreateCategoryRequest $request)
+    public function store(CreateCategoryRequest $request)
     {
         Category::create($request->all());
         return redirect()->back()->with('message', 'Submitted Successfully');
@@ -61,6 +61,4 @@ class CategoryController extends Controller
         
         return redirect()->back()->withErrors('unable to delete');
     }
-    
-     
 }

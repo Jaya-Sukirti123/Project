@@ -3,16 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/wamp_3.0.4/www/Project.dev/resources/views/form.blade.php</file>
             <file>file:/D:/wamp_3.0.4/www/Project.dev/app/Http/Controllers/ProjectController.php</file>
+            <file>file:/D:/wamp_3.0.4/www/Project.dev/database/migrations/2016_09_26_102934_add_columns_to_projects.php</file>
+            <file>file:/D:/wamp_3.0.4/www/Project.dev/resources/views/category/category_form.blade.php</file>
             <file>file:/D:/wamp_3.0.4/www/Project.dev/routes/web.php</file>
-            <file>file:/D:/wamp_3.0.4/www/Project.dev/resources/views/index.blade.php</file>
-            <file>file:/D:/wamp_3.0.4/www/Project.dev/app/Http/Requests/CreateProjectRequest.php</file>
+            <file>file:/D:/wamp_3.0.4/www/Project.dev/database/migrations/2016_09_21_105024_create_projects_table.php</file>
+            <file>file:/D:/wamp_3.0.4/www/Project.dev/database/migrations/2016_10_05_120700_add_projects_categories_pivot.php</file>
             <file>file:/D:/wamp_3.0.4/www/Project.dev/app/Http/Controllers/CategoryController.php</file>
-            <file>file:/D:/wamp_3.0.4/www/Project.dev/database/migrations/2016_09_30_135204_create_categories_table.php</file>
-            <file>file:/D:/wamp_3.0.4/www/Project.dev/resources/views/category.blade.php</file>
+            <file>file:/D:/wamp_3.0.4/www/Project.dev/database/migrations/2016_10_05_140410_made_category_nullable_in_projects_table.php</file>
             <file>file:/D:/wamp_3.0.4/www/Project.dev/app/model/Category.php</file>
-            <file>file:/D:/wamp_3.0.4/www/Project.dev/resources/views/layout/partials/messages.blade.php</file>
+            <file>file:/D:/wamp_3.0.4/www/Project.dev/resources/views/project/form.blade.php</file>
             <file>file:/D:/wamp_3.0.4/www/Project.dev/app/model/Project.php</file>
         </group>
     </open-files>

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProjectRequest;
+use App\Jobs\SearchProject;
+use App\model\Category;
 use App\Model\Project;
 use Illuminate\Http\Request;
-use function redirect;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers;
- use App\Jobs\SearchProject;
+use function redirect;
+use function view;
+//use DB;
 
 class ProjectController extends Controller
 {
@@ -27,18 +29,24 @@ class ProjectController extends Controller
     public function create()
     {
         $project= new Project();
-        return view('project\form', compact('project'));
+        $categories =Category::pluck('category_name', 'id');
+        return view('project\form', compact('project', 'categories'));
     }
     
     public function store(CreateProjectRequest $request)
     {
-        Project::create($request->all());
-        return redirect()->back()->with('message', 'Submitted Successfully');
+        return DB::transaction( function() use($request) {
+               
+                if($projects = Project::create($request->all()))
+                    {
+                        $projects->categories()->sync($request->get('category'));
+                    }
+                return redirect()->back()->with('message', 'Submitted Successfully');          
+        });
     }
     
-     public function edit($id, Request $request)
+    public function edit($id, Request $request)
     { 
-       
         $project = Project::find($id);
         return view('project\form', compact('project'));
     }
@@ -49,9 +57,8 @@ class ProjectController extends Controller
             $project->update($request->toArray());
             return redirect()->back()
                 ->withMessage('successfully updated');
-       }
-       
-       return redirect()->back()->withErrors('unable to update');
+        }
+        return redirect()->back()->withErrors('unable to update');
     }
     
     public function destroy($id, Request $request)
@@ -60,9 +67,6 @@ class ProjectController extends Controller
             $project->delete();
             return redirect()->back()->withMessage('Successfully Deleted');
         }
-        
         return redirect()->back()->withErrors('unable to delete');
     }
-    
-    
 }

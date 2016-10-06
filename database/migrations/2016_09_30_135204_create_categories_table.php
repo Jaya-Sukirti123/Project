@@ -27,9 +27,8 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-       Schema::create('categories', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->string('category_name');
-            
         });
     }
 }

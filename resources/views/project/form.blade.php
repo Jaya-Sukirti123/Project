@@ -25,21 +25,18 @@
                 <label class="control-label col-xs-3">Priority:</label>
                 <select class="form-control" name="priority">
                     <option value="">-select-</option>
-                    <option value="1" {{$project->priority == 1 ? 'selected' : '' }}>1</option>
-                    <option value="2" {{$project->priority == 1 ? 'selected' : '' }}>2</option>
-                    <option value="3" {{$project->priority == 3 ? 'selected' : '' }}>3</option>
-                    <option value="4" {{$project->priority == 4 ? 'selected' : '' }}>4</option>
-                    <option value="5" {{$project->priority == 5 ? 'selected' : '' }}>5</option>
-                    <option value="6" {{$project->priority == 6 ? 'selected' : '' }}>6</option>
-                    <option value="7" {{$project->priority == 7 ? 'selected' : '' }}>7</option>
-                    <option value="8" {{$project->priority == 8 ? 'selected' : '' }}>8</option>
-                    <option value="9" {{$project->priority == 9 ? 'selected' : '' }}>9</option>
-                    <option value="10" {{$project->priority == 10 ? 'selected' : '' }}>10</option>    
+                    @for($i=1; $i<=10; $i++)
+                        <option value="{{$i}}" {{$project->priority == $i ? 'selected' : '' }}>{{$i}}</option>
+                    @endfor
                 </select>
             </div>
             <div class="form-group">
                 <label class="control-label col-xs-3">Category:</label>
-                    <input type="text" name="category" class="form-control" placeholder="category" value="{{$project->category}}" > 
+                <select class="form-control" name="category[]" multiple>
+                        @foreach($categories as $id => $category_name)
+                        <option value = "{{$id}}">{{ $category_name }}</option> 
+                        @endforeach
+                </select>
             </div>
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Submit</button>

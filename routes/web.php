@@ -18,6 +18,7 @@ Route::get('/projects/search', 'ProjectController@search')->name('projects.searc
 Route::get('/categories/search', 'CategoryController@search')->name('categories.search');
 Route::Resource('/projects', 'ProjectController');
 Route::Resource('/categories', 'CategoryController');
+Route::get('/send', 'EmailController@send');
 
 
 
