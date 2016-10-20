@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Console\Commands\SendBirthdayEmail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use function base_path;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,19 +15,20 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        SendBirthdayEmail::class,
     ];
 
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param  Schedule  $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('email:birthday')->dailyAt('10:30');
     }
 
     /**

@@ -12,11 +12,10 @@ class EmailController extends Controller
     {
         $title = $request->input('title');
         $content = $request->input('content');
-        
+         
         Mail::send('email\send', ['title' => $title, 'content' => $content], function ($message)
             {
-
-                $message->from('jaya.sukirti@sts.in', 'Jaya Sukirti');
+                //$message->from('jaya.sukirti@sts.in', 'Jaya Sukirti');
                 $message->to('jaya.sukirti@sts.in');
                 $message->subject('practice mail');
             });

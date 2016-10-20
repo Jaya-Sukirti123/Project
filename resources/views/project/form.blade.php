@@ -26,16 +26,18 @@
                 <select class="form-control" name="priority">
                     <option value="">-select-</option>
                     @for($i=1; $i<=10; $i++)
-                        <option value="{{$i}}" {{$project->priority == $i ? 'selected' : '' }}>{{$i}}</option>
+                        <option value="{{$i}}" {{ $project->priority == $i ? 'selected' : '' }}>{{$i}}</option>
                     @endfor
                 </select>
             </div>
             <div class="form-group">
                 <label class="control-label col-xs-3">Category:</label>
                 <select class="form-control" name="category[]" multiple>
+                        @php($projectCategoryIds = $project->categories->pluck('category_name', 'id'))
+                        dd($projectCategoryIds);
                         @foreach($categories as $id => $category_name)
-                        <option value = "{{$id}}">{{ $category_name }}</option> 
-                        @endforeach
+                            <option value="{{$id}}" {{ $projectCategoryIds->has($id) ? 'selected' : '' }}>{{$category_name}}</option> 
+                        @endforeach 
                 </select>
             </div>
             <div class="col-md-12">

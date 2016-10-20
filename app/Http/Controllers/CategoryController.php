@@ -11,6 +11,16 @@ use function view;
 
 class CategoryController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
         $categories=Category::paginate(5);
@@ -45,10 +55,8 @@ class CategoryController extends Controller
     {  
         if ($category = Category::find($id)) {
             $category->update($request->toArray());
-            return redirect()->back()
-                ->withMessage('successfully updated');
+            return redirect()->back()->withMessage('successfully updated');
        }
-       
        return redirect()->back()->withErrors('unable to update');
     }
     
@@ -58,7 +66,6 @@ class CategoryController extends Controller
             $category->delete();
             return redirect()->back()->withMessage('Successfully Deleted');
         }
-        
         return redirect()->back()->withErrors('unable to delete');
     }
 }
