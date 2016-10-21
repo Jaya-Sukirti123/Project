@@ -25,8 +25,8 @@ class MadeCategoryNullableInProjectsTable extends Migration
      */
     public function down()
     {
-         Schema::table('projects', function (Blueprint $table) {
-            $table->string('category');
+        Schema::table('projects', function (Blueprint $table) {
+            $table->dropColumn('category');
         });
     }
 }

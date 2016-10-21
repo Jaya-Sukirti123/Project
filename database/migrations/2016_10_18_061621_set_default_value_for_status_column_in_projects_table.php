@@ -13,7 +13,7 @@ class SetDefaultValueForStatusColumnInProjectsTable extends Migration
      */
     public function up()
     {
-         Schema::table('projects', function (Blueprint $table) {
+        Schema::table('projects', function (Blueprint $table) {
             $table->string('status')->after('category')->default('uncompleted')->change();
         });
     }
@@ -26,7 +26,7 @@ class SetDefaultValueForStatusColumnInProjectsTable extends Migration
     public function down()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('status');
+            $table->dropColumn('status');
         });
     }
 }

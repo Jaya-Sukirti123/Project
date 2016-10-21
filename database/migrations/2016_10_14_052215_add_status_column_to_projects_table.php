@@ -26,7 +26,7 @@ class AddStatusColumnToProjectsTable extends Migration
     public function down()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('status');
+            $table->dropColumn('status');
         });
     }
 }
